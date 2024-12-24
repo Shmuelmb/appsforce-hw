@@ -3,7 +3,8 @@
 A React application for managing user data with features for viewing, adding, editing, and deleting users. Built with Next.js, TypeScript, and modern React practices.
 
 This project build for Appsforce interview mission.
-I will be glad to work with you!
+
+**I will be glad to work with you!**
 
 ## Features
 
