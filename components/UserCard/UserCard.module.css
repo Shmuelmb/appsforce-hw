@@ -1,0 +1,64 @@
+.card {
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.card:hover {
+  transform: scale(1.01);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.image {
+  border-radius: 50%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.location {
+  color: #718096;
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.editButton {
+  background: #7180968b;
+  color: white;
+}
+
+.deleteButton {
+  background: #e53e3e79;
+  color: white;
+}

@@ -1,95 +1,129 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import styles from "./page.module.css";
+import { UserCard } from "@/components/UserCard/UserCard";
+import { User } from "@/types";
+import Loader from "@/components/Loader/Loader";
+import { useUsers } from "@/hooks/use-users";
+import UseForm from "@/components/UseForm/UseForm";
+import Modal from "@/components/Modal/Modal";
+import { userFormFields } from "@/lib/sources";
+import UserForm from "@/components/UseForm/UseForm";
+const queryClient = new QueryClient();
+function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isAddingUser, setIsAddingUser] = useState(false);
 
-export default function Home() {
+  const {
+    users,
+    isLoading,
+    deleteUserMutation,
+    updateUserMutation,
+    addUserMutation,
+  } = useUsers(queryClient);
+  const filteredUsers = users.filter((user) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      user.title.toLowerCase().includes(searchLower) ||
+      user.firstName.toLowerCase().includes(searchLower) ||
+      user.lastName.toLowerCase().includes(searchLower) ||
+      user.email.toLowerCase().includes(searchLower) ||
+      user.country.toLowerCase().includes(searchLower) ||
+      user.city.toLowerCase().includes(searchLower)
+    );
+  });
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <main className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Users manger</h1>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsAddingUser(true)}>
+          Add User
+        </button>
+      </div>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search by name, email, location, or ID..."
+          className={styles.searchInput}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      </div>
+      <div className={styles.grid}>
+        {filteredUsers.map((user) => (
+          <UserCard
+            key={user.id}
+            user={user}
+            onEdit={setSelectedUser}
+            onDelete={(id) => deleteUserMutation.mutate(id)}
+          />
+        ))}
+      </div>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      {selectedUser && (
+        <Modal
+          title="Edit User"
+          isOpen={selectedUser !== null}
+          onClose={() => setSelectedUser(null)}>
+          <UseForm
+            fields={userFormFields}
+            user={selectedUser}
+            existingEmails={users.map((user) => user.email)}
+            onSubmit={(data) => {
+              updateUserMutation.mutate({ ...selectedUser, ...data });
+
+              setSelectedUser(null);
+            }}
+            onCancel={() => setSelectedUser(null)}
           />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+        </Modal>
+      )}
+
+      {isAddingUser && (
+        <Modal
+          title="Add User"
+          isOpen={isAddingUser}
+          onClose={() => setIsAddingUser(false)}>
+          <UseForm
+            fields={userFormFields}
+            existingEmails={users.map((user) => user.email)}
+            onSubmit={(data) => {
+              addUserMutation.mutate(data);
+              setIsAddingUser(false);
+            }}
+            onCancel={() => setIsAddingUser(false)}
           />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </Modal>
+      )}
+    </main>
+  );
+}
+export default function Page() {
+  return (
+    // Provide the client to your App
+    <QueryClientProvider client={queryClient}>
+      <Home />
+    </QueryClientProvider>
   );
 }
