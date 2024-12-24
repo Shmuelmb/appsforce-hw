@@ -36,6 +36,7 @@ export default function UserForm({
       city: user?.city || "",
       streetName: user?.streetName || "",
       streetNumber: user?.streetNumber?.toString() || "",
+      picture: user?.picture || "",
     },
   });
 

@@ -17,7 +17,7 @@ export default function Field({
   placeholder,
 }: Props) {
   return (
-    <div className={styles.inputGroup}>
+    <div className={styles.field}>
       <label htmlFor={id} className={styles.label}>
         {label}
       </label>
