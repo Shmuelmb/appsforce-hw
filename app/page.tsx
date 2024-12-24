@@ -3,11 +3,8 @@
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import styles from "./page.module.css";
-import { CardsContainer } from "@/components/CardsContainer/CardsContainer";
-import Loader from "@/components/Loader/Loader";
+import { CardsContainer, Modal, Loader, Form } from "@/components/";
 import { useUsers } from "@/hooks/use-users";
-import UseForm from "@/components/Form/Form";
-import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 import { AiFillMoon, AiFillSun } from "react-icons/ai";
 import toast from "react-hot-toast";
@@ -88,7 +85,7 @@ function Home() {
           title="Add User"
           isOpen={isAddingUser}
           onClose={() => setIsAddingUser(false)}>
-          <UseForm
+          <Form
             fields={userFormFields}
             existingEmails={users.map((user) => user.email)}
             onSubmit={(data) => {

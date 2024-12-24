@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { UserCard } from "@/components/Card/Card";
+import { Card } from "@/components";
 import { User } from "@/types";
-import UseForm from "@/components/Form/Form";
-import Modal from "@/components/Modal/Modal";
+import { Form, Modal } from "@/components/";
 import { userFormFields } from "@/lib/sources";
 import toast from "react-hot-toast";
 
@@ -13,7 +12,7 @@ type CardsContainerProps = {
   onAdd: (user: User) => void;
   searchTerm: string;
 };
-export function CardsContainer({
+export default function CardsContainer({
   users,
   onEdit,
   onDelete,
@@ -36,7 +35,7 @@ export function CardsContainer({
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.7rem" }}>
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user) => (
-            <UserCard
+            <Card
               key={user.id}
               user={user}
               onEdit={setSelectedUser}
@@ -53,7 +52,7 @@ export function CardsContainer({
           title="Edit User"
           isOpen={selectedUser !== null}
           onClose={() => setSelectedUser(null)}>
-          <UseForm
+          <Form
             fields={userFormFields}
             user={selectedUser}
             existingEmails={users.map((user) => user.email)}

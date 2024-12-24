@@ -9,7 +9,7 @@ interface UserCardProps {
   onDelete: (id: string) => void;
 }
 
-export function UserCard({ user, onEdit, onDelete }: UserCardProps) {
+export default function UserCard({ user, onEdit, onDelete }: UserCardProps) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleDelete = () => {
