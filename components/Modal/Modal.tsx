@@ -19,7 +19,9 @@ export default function Modal({
       onClick={onClose}
       style={{ display: isOpen ? "flex" : "none" }}>
       <div
-        className={styles.modalContent}
+        className={
+          isOpen ? `${styles.modalContent} ${styles.open}` : styles.modalContent
+        }
         onClick={(e) => {
           e.stopPropagation();
         }}>
