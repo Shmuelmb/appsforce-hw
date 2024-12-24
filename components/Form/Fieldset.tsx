@@ -1,4 +1,4 @@
-import styles from "./UseForm.module.css";
+import styles from "./Form.module.css";
 import Field from "./Field";
 import { FieldErrors } from "react-hook-form";
 import { UseFormRegister } from "react-hook-form";

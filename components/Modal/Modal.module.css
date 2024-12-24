@@ -10,9 +10,11 @@
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 1;
 }
-
+.modal h1 {
+  margin-bottom: 1rem;
+}
 .modalContent {
-  max-height: 80vh;
+  max-height: 90vh;
   max-width: 80%;
   padding: 2rem;
   border-radius: 8px;
@@ -22,9 +24,9 @@
   background-color: var(--bg-modal);
   z-index: 999;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 }
 .close {
   position: absolute;

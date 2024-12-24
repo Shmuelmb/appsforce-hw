@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { UserCard } from "@/components/UserCard/UserCard";
+import { UserCard } from "@/components/Card/Card";
 import { User } from "@/types";
-import UseForm from "@/components/UseForm/UseForm";
+import UseForm from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 
@@ -27,7 +27,7 @@ export function CardsContainer({ users, onEdit, onDelete, searchTerm }: Props) {
   });
   return (
     <>
-      <div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.7rem" }}>
         {filteredUsers.map((user) => (
           <UserCard
             key={user.id}

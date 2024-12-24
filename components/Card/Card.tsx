@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import styles from "./UserCard.module.css";
+import styles from "./Card.module.css";
 import { User } from "@/types";
 
 interface UserCardProps {

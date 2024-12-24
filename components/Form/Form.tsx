@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userFormSchema, type UserFormData } from "@/lib/validations/user";
 import { User } from "@/types";
-import styles from "./UseForm.module.css";
+import styles from "./Form.module.css";
 import Fieldset from "./Fieldset";
 
 interface UserFormProps {

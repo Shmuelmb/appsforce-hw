@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 import { CardsContainer } from "@/components/CardsContainer/CardsContainer";
 import Loader from "@/components/Loader/Loader";
 import { useUsers } from "@/hooks/use-users";
-import UseForm from "@/components/UseForm/UseForm";
+import UseForm from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 import { AiFillMoon, AiFillSun } from "react-icons/ai";

@@ -1,12 +1,15 @@
 .card {
   border-radius: 8px;
   padding: 1rem;
-  margin: 1rem 0;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: transform 0.2s;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
+}
+.card p {
+  word-break: break-all;
 }
 .card:hover {
   transform: scale(1.01);

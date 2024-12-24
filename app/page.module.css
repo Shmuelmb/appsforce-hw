@@ -19,18 +19,19 @@
   display: flex;
   gap: 1rem;
 }
-.buttons > button {
+.buttons button {
   background: var(--bg-add-button);
   color: var(--font-color);
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.1rem;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
 }
-.addButton:hover {
+.buttons button:hover {
   background: var(--bg-add-button-hover);
 }
+
 .searchContainer {
   margin-bottom: 2rem;
 }
@@ -46,4 +47,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+}
+
+@media (width < 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
 }

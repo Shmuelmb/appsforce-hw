@@ -1,4 +1,4 @@
-import styles from "./UseForm.module.css";
+import styles from "./Form.module.css";
 import { UseFormRegister } from "react-hook-form";
 
 type Props = {

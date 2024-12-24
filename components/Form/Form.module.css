@@ -8,9 +8,10 @@
   border: none;
   padding: 0;
   margin: 0;
-  display: grid;
+  display: flex;
   gap: 1rem;
-  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .inputGroup {
@@ -34,7 +35,6 @@
   border: none;
   background: var(--bg-secondary-modal);
   border: 1px solid var(--bg-secondary-modal);
-
   border-radius: 0.375rem;
 }
 
