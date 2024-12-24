@@ -1,24 +1,30 @@
 import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 import { User, FetchUser } from "../types";
+
+const getUsers = async () => {
+  try {
+    const response = await fetch("https://randomuser.me/api/?results=10");
+    const data = await response.json();
+    return data.results.map((user: FetchUser) => ({
+      id: user.login.uuid,
+      title: user.name.title,
+      firstName: user.name.first,
+      lastName: user.name.last,
+      email: user.email,
+      picture: user.picture.medium,
+      country: user.location.country,
+      city: user.location.city,
+      streetName: user.location.street.name,
+      streetNumber: user.location.street.number,
+    }));
+  } catch (error) {
+    console.error("Error fetching users:", error);
+  }
+};
 export function useUsers(queryClient: QueryClient) {
   const { data: users = [], isLoading } = useQuery<User[]>({
     queryKey: ["users"],
-    queryFn: async () => {
-      const response = await fetch("https://randomuser.me/api/?results=10");
-      const data = await response.json();
-      return data.results.map((user: FetchUser) => ({
-        id: user.login.uuid,
-        title: user.name.title,
-        firstName: user.name.first,
-        lastName: user.name.last,
-        email: user.email,
-        picture: user.picture.medium,
-        country: user.location.country,
-        city: user.location.city,
-        streetName: user.location.street.name,
-        streetNumber: user.location.street.number,
-      }));
-    },
+    queryFn: () => getUsers(),
   });
   const deleteUserMutation = useMutation({
     mutationFn: async (userId: string) => {
@@ -34,7 +40,6 @@ export function useUsers(queryClient: QueryClient) {
 
   const addUserMutation = useMutation({
     mutationFn: async (newUser: Partial<User>) => {
-      // In a real app, this would be an API call
       const user: User = {
         ...newUser,
         id: Math.random().toString(36).substr(2, 9),

@@ -6,7 +6,7 @@
 .fieldSet {
   border: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -81,14 +81,8 @@
   color: var(--font-color);
 }
 
-@media (width < 500) {
+@media (width < 600) {
   .fieldSet {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (width > 600) {
-  .fieldSet {
-    grid-template-columns: repeat(3, 1fr);
   }
 }

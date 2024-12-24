@@ -53,10 +53,6 @@ input {
   color: var(--font-color);
   border: 0px solid var(--font-color);
 }
-a {
-  color: inherit;
-  text-decoration: none;
-}
 
 @media (width < 768px) {
   input::placeholder {

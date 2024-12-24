@@ -11,7 +11,13 @@ import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 import { AiFillMoon, AiFillSun } from "react-icons/ai";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddingUser, setIsAddingUser] = useState(false);
@@ -95,7 +101,6 @@ function Home() {
 }
 export default function Page() {
   return (
-    // Provide the client to your App
     <QueryClientProvider client={queryClient}>
       <Home />
     </QueryClientProvider>

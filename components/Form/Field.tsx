@@ -1,21 +1,20 @@
 import styles from "./Form.module.css";
-import { UseFormRegister } from "react-hook-form";
-
-type Props = {
+import { Path, UseFormRegister } from "react-hook-form";
+import { type FieldValues } from "react-hook-form";
+type FieldProps<T extends FieldValues> = {
   label: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onRegister: UseFormRegister<any>;
+  onRegister: UseFormRegister<T>;
   error?: string;
   id: string;
   placeholder: string;
 };
-export default function Field({
+export default function Field<T extends FieldValues>({
   label,
   error,
   id,
   onRegister,
   placeholder,
-}: Props) {
+}: FieldProps<T>) {
   return (
     <div className={styles.field}>
       <label htmlFor={id} className={styles.label}>
@@ -25,7 +24,7 @@ export default function Field({
         id={id}
         type="text"
         className={styles.input}
-        {...onRegister(id)}
+        {...onRegister(id as Path<T>)}
         placeholder={placeholder}
         style={error ? { border: "1px solid red" } : {}}
       />
