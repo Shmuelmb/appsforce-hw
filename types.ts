@@ -1,19 +1,17 @@
-export interface User {
+export type User = {
   id: string;
   firstName: string;
-
   lastName: string;
   title: string;
-
   email: string;
   picture: string;
   country: string;
   city: string;
   streetName: string;
   streetNumber: string;
-}
+};
 
-export interface FetchUser {
+export type FetchUser = {
   name: {
     title: string;
     first: string;
@@ -34,4 +32,10 @@ export interface FetchUser {
   login: {
     uuid: string;
   };
-}
+};
+
+export type Field = {
+  label: string;
+  id: string;
+  placeholder: string;
+};

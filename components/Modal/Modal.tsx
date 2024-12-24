@@ -1,13 +1,18 @@
 import styles from "./Modal.module.css";
 
-type Props = {
+type ModalProps = {
   children: React.ReactNode;
   title: string;
   isOpen: boolean;
   onClose: () => void;
 };
 
-export default function Modal({ children, title, isOpen, onClose }: Props) {
+export default function Modal({
+  children,
+  title,
+  isOpen,
+  onClose,
+}: ModalProps) {
   return (
     <div
       className={styles.modal}

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userFormSchema, type UserFormData } from "@/lib/validations/user";
-import { User } from "@/types";
+import { type User, type Field } from "@/types";
 import styles from "./Form.module.css";
 import Fieldset from "./Fieldset";
 
@@ -10,7 +10,7 @@ interface UserFormProps {
   existingEmails: string[];
   onSubmit: (data: UserFormData) => void;
   onCancel: () => void;
-  fields: { label: string; id: string; placeholder: string }[];
+  fields: Field[];
 }
 
 export default function UserForm({

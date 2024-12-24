@@ -1,4 +1,5 @@
-export const userFormFields = [
+import { Field } from "@/types";
+export const userFormFields: Field[] = [
   {
     label: "Title",
     id: "title",

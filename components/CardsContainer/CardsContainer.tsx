@@ -5,14 +5,19 @@ import UseForm from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 
-type Props = {
+type CardsContainerProps = {
   users: User[];
   onEdit: (user: User) => void;
   onDelete: (id: string) => void;
   onAdd: (user: User) => void;
   searchTerm: string;
 };
-export function CardsContainer({ users, onEdit, onDelete, searchTerm }: Props) {
+export function CardsContainer({
+  users,
+  onEdit,
+  onDelete,
+  searchTerm,
+}: CardsContainerProps) {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const filteredUsers = users.filter((user) => {
     const searchLower = searchTerm.toLowerCase();
