@@ -4,6 +4,7 @@ import { User } from "@/types";
 import UseForm from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
+import toast from "react-hot-toast";
 
 type CardsContainerProps = {
   users: User[];
@@ -54,8 +55,8 @@ export function CardsContainer({
             existingEmails={users.map((user) => user.email)}
             onSubmit={(data) => {
               onEdit({ ...selectedUser, ...data });
-
               setSelectedUser(null);
+              toast.success("User updated successfully");
             }}
             onCancel={() => setSelectedUser(null)}
           />

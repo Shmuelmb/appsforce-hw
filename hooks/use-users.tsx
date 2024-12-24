@@ -1,6 +1,6 @@
 import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 import { User, FetchUser } from "../types";
-
+import { toast } from "react-hot-toast";
 const getUsers = async () => {
   try {
     const response = await fetch("https://randomuser.me/api/?results=10");
@@ -19,10 +19,15 @@ const getUsers = async () => {
     }));
   } catch (error) {
     console.error("Error fetching users:", error);
+    toast.error("Error fetching users. Please try again later.");
   }
 };
 export function useUsers(queryClient: QueryClient) {
-  const { data: users = [], isLoading } = useQuery<User[]>({
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: () => getUsers(),
   });
@@ -35,6 +40,7 @@ export function useUsers(queryClient: QueryClient) {
         if (!oldUsers) return [];
         return oldUsers.filter((user) => user.id !== userId);
       });
+      toast.success("User deleted successfully.");
     },
   });
 
@@ -56,8 +62,6 @@ export function useUsers(queryClient: QueryClient) {
 
   const updateUserMutation = useMutation({
     mutationFn: async (updatedUser: User) => {
-      console.log(updatedUser);
-
       return updatedUser;
     },
     onSuccess: (updatedUser) => {
@@ -75,6 +79,7 @@ export function useUsers(queryClient: QueryClient) {
     isLoading,
     deleteUserMutation,
     updateUserMutation,
+    isError,
     addUserMutation,
   };
 }

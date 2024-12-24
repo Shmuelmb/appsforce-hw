@@ -10,6 +10,7 @@ import UseForm from "@/components/Form/Form";
 import Modal from "@/components/Modal/Modal";
 import { userFormFields } from "@/lib/sources";
 import { AiFillMoon, AiFillSun } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ function Home() {
     deleteUserMutation,
     updateUserMutation,
     addUserMutation,
+    isError,
   } = useUsers(queryClient);
 
   if (isLoading) {
@@ -72,6 +74,7 @@ function Home() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+      {isError && <p>Something went wrong please try again later</p>}
 
       <CardsContainer
         users={users}
@@ -91,6 +94,7 @@ function Home() {
             onSubmit={(data) => {
               addUserMutation.mutate(data);
               setIsAddingUser(false);
+              toast.success("User added successfully");
             }}
             onCancel={() => setIsAddingUser(false)}
           />
