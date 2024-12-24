@@ -3,15 +3,18 @@ import Field from "./Field";
 import { type Field as FieldType } from "@/types";
 import { FieldErrors } from "react-hook-form";
 import { UseFormRegister } from "react-hook-form";
+import { type FieldValues } from "react-hook-form";
 
-interface FieldsetProps {
+interface FieldsetProps<T extends FieldValues, U extends FieldValues> {
   fields: FieldType[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  errors: FieldErrors<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
+  errors: FieldErrors<T>;
+  register: UseFormRegister<U>;
 }
-export default function Fieldset({ fields, register, errors }: FieldsetProps) {
+export default function Fieldset<T extends FieldValues, U extends FieldValues>({
+  fields,
+  register,
+  errors,
+}: FieldsetProps<T, U>) {
   return (
     <fieldset className={styles.fieldSet}>
       {fields.map((field) => (
