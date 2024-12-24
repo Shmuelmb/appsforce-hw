@@ -1,13 +1,32 @@
-:root {
+.dark {
   --background: #000000cf;
   --bg-secondary: #00000034;
   --font-color: #ffffff;
-  --secondary-font-color: #000000;
+  --secondary-font-color: #4b5563;
   --bg-card: ;
-  --bg-add-button: ;
+  --bg-add-button: #656565;
+  --bg-add-button-hover: #4d4d4d;
+  --bg-modal: rgb(0, 0, 0);
+  --bg-secondary-modal: #0c0c0c;
   --bg-delete-button: ;
-  --bg-edit-button: ;
-  --bg-save-button: ;
+  --bg-edit-button: #7180968b;
+  --red: #e53e3e79;
+  --error: #dc2626;
+}
+.light {
+  --background: #ffffff; /* Light background */
+  --bg-secondary: #f3f4f6; /* Slightly off-white secondary background */
+  --font-color: #000000; /* Black font color */
+  --secondary-font-color: #6b7280; /* Neutral gray for secondary text */
+  --bg-card: #f9fafb; /* Card background */
+  --bg-add-button: #d1d5db; /* Light gray button */
+  --bg-add-button-hover: #e5e7eb; /* Lighter hover effect */
+  --bg-modal: #ffffff; /* Modal background */
+  --bg-secondary-modal: #f3f4f6; /* Secondary modal background */
+  --bg-delete-button: #f87171; /* Light red for delete button */
+  --bg-edit-button: #c7def8; /* Light blue for edit button */
+  --red: #f98484; /* Strong red for accents */
+  --error: #b91c1c; /* Darker red for errors */
 }
 
 html,

@@ -10,7 +10,7 @@ interface UserFormProps {
   existingEmails: string[];
   onSubmit: (data: UserFormData) => void;
   onCancel: () => void;
-  fields: { label: string; id: string }[];
+  fields: { label: string; id: string; placeholder: string }[];
 }
 
 export default function UserForm({

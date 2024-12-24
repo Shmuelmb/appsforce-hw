@@ -3,6 +3,7 @@ import { UseFormRegister } from "react-hook-form";
 
 type Props = {
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onRegister: UseFormRegister<any>;
   error?: string;
   id: string;

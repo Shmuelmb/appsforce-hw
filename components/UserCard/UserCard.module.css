@@ -54,11 +54,11 @@
 }
 
 .editButton {
-  background: #7180968b;
-  color: white;
+  background: var(--bg-edit-button);
+  color: var(--font-color);
 }
 
 .deleteButton {
-  background: #e53e3e79;
-  color: white;
+  background: var(--red);
+  color: var(--font-color);
 }
