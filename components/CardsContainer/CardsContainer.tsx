@@ -34,14 +34,18 @@ export function CardsContainer({
   return (
     <>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.7rem" }}>
-        {filteredUsers.map((user) => (
-          <UserCard
-            key={user.id}
-            user={user}
-            onEdit={setSelectedUser}
-            onDelete={(id) => onDelete(id)}
-          />
-        ))}
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
+            <UserCard
+              key={user.id}
+              user={user}
+              onEdit={setSelectedUser}
+              onDelete={(id) => onDelete(id)}
+            />
+          ))
+        ) : (
+          <p>No users found</p>
+        )}
       </div>
 
       {selectedUser && (
